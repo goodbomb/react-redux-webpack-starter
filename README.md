@@ -1,7 +1,6 @@
-Viu - Front End Application
-==================================
+# Viu - Front End Application
 
-# Tech Stack
+## Tech Stack
 
 **Javascript Framework(s):**
 - React
