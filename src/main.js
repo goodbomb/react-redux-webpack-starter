@@ -9,7 +9,7 @@ import rootReducer from './common/rootReducer';
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(rootReducer)}>
-    <App />
-  </Provider>
-  , document.getElementById('entry'));
+    <Provider store={createStoreWithMiddleware(rootReducer)}>
+        <App />
+    </Provider>
+    , document.getElementById('entry'));

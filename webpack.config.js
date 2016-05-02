@@ -21,12 +21,16 @@ module.exports = {
     module: {
         loaders: [{
                 test: /\.css$/,
-                loader: "style!css",
+                loaders: ['style', 'css'],
                 include: path.join(__dirname, 'src')
             },
             {
                 test: /\.js$/,
-                loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react'],
+                loaders: [
+                    'react-hot',
+                    'babel?presets[]=es2015&presets[]=react',
+                    'eslint-loader'
+                ],
                 include: path.join(__dirname, 'src')
             }]
     },
@@ -39,5 +43,12 @@ module.exports = {
             index: '/'
         },
         contentBase: './src'
+    },
+    eslint: {
+        configFile: '.eslintrc',
+        extensions: ['.js', '.jsx'],
+        ignorePath: '.gitignore',
+        cache: true,
+        formatter: require('eslint-friendly-formatter')
     }
 };
