@@ -5,7 +5,7 @@
   "repository": "ssh://git@stash.ea.com:7999/pqe/viuf.git",
   "main": "src/main.js",
   "scripts": {
-    "dev": "rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack-dev-server --port 9000",
+    "start":"rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack-dev-server --port 9000",
     "build": "rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack",
     "build:run": "npm run build && node server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,13 +23,14 @@
     "babel-preset-react": "^6.5.0",
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
+    "react-hot-loader": "^1.3.0",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.3",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-  	"babel-polyfill": "^6.7.4",
+    "babel-polyfill": "^6.7.4",
     "express": "^4.13.4",
     "proxy-middleware": "^0.15.0",
     "react": "^15.0.1",

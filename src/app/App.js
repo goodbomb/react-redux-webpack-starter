@@ -4,7 +4,7 @@ import { Component } from 'react';
 export default class App extends Component {
   render() {
     return (
-      <div>It is alive!</div>
+      <div>It's alive with Hot Module Replacement!</div>
     );
   }
 }
