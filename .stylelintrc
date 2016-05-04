@@ -87,7 +87,6 @@
         "selector-list-comma-space-after": "always",
         "selector-list-comma-space-before": "never",
         "selector-no-attribute": true,
-        "selector-no-combinator": true,
         "selector-no-id": true,
         "selector-no-qualifying-type": false,
         "selector-no-universal": true,

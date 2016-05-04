@@ -1,6 +1,6 @@
 import React from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './app.css';
+import cssModules from 'react-css-modules';
+import styles from './app.scss';
 
 const App = function() {
     return (
@@ -8,4 +8,4 @@ const App = function() {
     );
 };
 
-export default CSSModules(App, styles);
+export default cssModules(App, styles);

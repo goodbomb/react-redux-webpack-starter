@@ -63,12 +63,12 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
-        new ExtractTextPlugin('app.css', {
+        new ExtractTextPlugin('bundle.css', {
             allChunks: true
         }),
         new styleLintPlugin({
             configFile: path.join(__dirname, '.stylelintrc'),
-            context: 'inherits from webpack',
+            context: path.join(__dirname, 'src'),
             files: '**/*.?(scss|css)',
             failOnError: false,
         })

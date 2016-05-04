@@ -4,9 +4,9 @@ var express = require('express');
 var url = require('url');
 var proxy = require('proxy-middleware');
 var server = express();
-var API_URL = process.env.API_URL || 'http://localhost:3000/';
+var API_URL = process.env.API_URL || 'http://localhost:9000/';
 
-server.set('port', (process.env.VIU_PORT || 9000));
+server.set('port', (process.env.VIU_PORT || 5000));
 server.use(express.static(__dirname + '/dist'));
 
 server.listen(server.get('port'), function() {

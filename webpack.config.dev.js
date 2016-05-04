@@ -7,7 +7,7 @@ var styleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
     entry: [
-        'webpack-dev-server/client?http://localhost:9000',
+        'webpack-dev-server/client?http://localhost:5000',
         'webpack/hot/only-dev-server',
         'babel-polyfill',
         './src/main.js',
@@ -33,7 +33,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loaders: [
-                    'react-hot',
+                    'react-hot-loader/webpack',
                     'babel-loader?cacheDirectory,presets[]=stage-1,presets[]=react,presets[]=es2015',
                     'eslint-loader'
                 ],
@@ -69,12 +69,12 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development')
         }),
-        new webpack.HotModuleReplacementPlugin(),
         new styleLintPlugin({
             configFile: path.join(__dirname, '.stylelintrc'),
             context: path.join(__dirname, 'src'),
             files: '**/*.?(scss|css)',
             failOnError: false
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin(),
     ]
 };

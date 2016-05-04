@@ -9,9 +9,9 @@
 
 | Task              | Description   
 | -------------     |:-------------:
-| npm start         | Builds the development environment and starts the dev server on `http://localhost:9000`.
+| npm start         | Builds the development environment and starts the dev server on `http://localhost:5000`.
 | npm run build     | Builds the production ready code. All files are generated in the `/dist` directory.
-| npm run build:run | Builds the production ready code and starts the server.js file on `http://localhost:9000` by default.
+| npm run build:run | Builds the production ready code and starts the server.js file on `http://localhost:5000` by default.
 | npm run lint:js   | Manually execute the javascript linter (eslint). This is also done automatically during the build process.
 | npm test          | Executes all tests in the `./src` directory.
 
@@ -37,7 +37,6 @@ root/
             views/          // this directory houses the views/pages for the application along with all of their sub-components
                 project/    // each view will have its own set of actions, components, containers, and reducers
                 team/
-                test/
                 user/
                     user.scss        // contains the styles for the User component
                     User.js         // contains the component AND container when necessary
