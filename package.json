@@ -8,8 +8,8 @@
   "scripts": {
     "start": "rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack-dev-server --port 9000 --config webpack.config.dev.js",
     "build": "rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack --optimize-minimize --optimize-occurrence-order --optimize-dedupe",
-    "build:run": "npm run build && node server",
-    "lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache --format './node_modules/eslint-friendly-formatter'",
+    "build:start": "npm run build && node server",
+    "lint:js": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache --format './node_modules/eslint-friendly-formatter'",
     "test": "cross-env NODE_ENV=test mocha ./src/**/*.spec.js --compilers js:babel-register --require chai --require sinon --reporter spec --recursive --growl"
   },
   "engines": {
@@ -55,6 +55,7 @@
     "react-redux": "^4.4.5",
     "react-router-redux": "^4.0.4",
     "redux": "^3.5.2",
-    "redux-form": "^5.2.3"
+    "redux-form": "^5.2.3",
+    "redux-form-schema": "0.0.3"
   }
 }
