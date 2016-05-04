@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var precss = require('precss');
+var fontMagician  = require('postcss-font-magician');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
@@ -22,7 +23,11 @@ module.exports = {
         loaders: [
             {
                 test: /\.(css|scss)$/,
-                loaders: ['style', 'css?sourceMap', 'postcss'],
+                loaders: [
+                    'style?sourceMap',
+                    'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+                    'postcss'
+                ],
                 include: path.join(__dirname, 'src')
             },
             {
@@ -54,7 +59,11 @@ module.exports = {
         formatter: require('eslint-friendly-formatter')
     },
     postcss: function () {
-        return [autoprefixer, precss];
+        return [
+            autoprefixer,
+            precss,
+            fontMagician
+        ];
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
@@ -64,7 +73,7 @@ module.exports = {
         new styleLintPlugin({
             configFile: path.join(__dirname, '.stylelintrc'),
             context: path.join(__dirname, 'src'),
-            files: '**/*.s?(a|c)ss',
+            files: '**/*.?(scss|css)',
             failOnError: false
         })
     ]

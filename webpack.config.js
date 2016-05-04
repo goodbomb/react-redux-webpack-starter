@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var precss = require('precss');
+var fontMagician  = require('postcss-font-magician');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
@@ -21,7 +22,11 @@ module.exports = {
         loaders: [
             {
                 test: /\.(css|scss)$/,
-                loader: ExtractTextPlugin.extract('style', 'css', 'postcss'),
+                loader: ExtractTextPlugin.extract(
+                    'style',
+                    'css?sourceMap',
+                    'postcss'
+                ),
                 include: path.join(__dirname, 'src')
             },
             {
@@ -48,7 +53,11 @@ module.exports = {
         configFile: path.join(__dirname, '.stylelint.config.json')
     },
     postcss: function () {
-        return [autoprefixer, precss];
+        return [
+            autoprefixer,
+            precss,
+            fontMagician
+        ];
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -60,7 +69,7 @@ module.exports = {
         new styleLintPlugin({
             configFile: path.join(__dirname, '.stylelintrc'),
             context: 'inherits from webpack',
-            files: '**/*.s?(a|c)ss',
+            files: '**/*.?(scss|css)',
             failOnError: false,
         })
     ]

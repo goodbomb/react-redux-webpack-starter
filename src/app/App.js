@@ -1,11 +1,11 @@
-import './app.scss';
-
 import React from 'react';
+import CSSModules from 'react-css-modules';
+import styles from './app.css';
 
 const App = function() {
     return (
-        <div className="app">It's alive with Hot Module Replacement!</div>
+        <div styleName="app">It's alive with Hot Module Replacement!</div>
     );
 };
 
-export default App;
+export default CSSModules(App, styles);
