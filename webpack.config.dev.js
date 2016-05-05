@@ -33,7 +33,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loaders: [
-                    'react-hot-loader/webpack',
+                    'react-hot',
                     'babel-loader?cacheDirectory,presets[]=stage-1,presets[]=react,presets[]=es2015',
                     'eslint-loader'
                 ],
