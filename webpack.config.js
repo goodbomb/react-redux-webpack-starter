@@ -9,7 +9,7 @@ var styleLintPlugin = require('stylelint-webpack-plugin');
 module.exports = {
     entry: [
         'babel-polyfill',
-        './src/main.js',
+        './src/index.js',
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),

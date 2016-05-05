@@ -9,8 +9,9 @@ module.exports = {
     entry: [
         'webpack-dev-server/client?http://localhost:5000',
         'webpack/hot/only-dev-server',
+        'react-hot-loader/patch',
         'babel-polyfill',
-        './src/main.js',
+        './src/index.js'
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -33,9 +34,8 @@ module.exports = {
             {
                 test: /\.js$/,
                 loaders: [
-                    'react-hot',
-                    'babel-loader?cacheDirectory,presets[]=stage-1,presets[]=react,presets[]=es2015',
-                    'eslint-loader'
+                    'babel-loader?cacheDirectory',
+                    // 'eslint-loader'
                 ],
                 include: path.join(__dirname, 'src')
             }
