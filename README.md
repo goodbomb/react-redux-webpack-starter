@@ -8,7 +8,7 @@
 4. Execute any of the following commands to get started:
 
 | Task              | Description   
-| -------------     |:-------------:
+| -------------     |-------------
 | npm start         | Builds the development environment and starts the dev server on `http://localhost:5000`.
 | npm run build     | Builds the production ready code. All files are generated in the `/dist` directory.
 | npm run build:run | Builds the production ready code and starts the server.js file on `http://localhost:5000` by default.
