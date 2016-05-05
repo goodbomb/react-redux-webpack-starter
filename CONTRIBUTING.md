@@ -19,29 +19,41 @@
 ## Application Architecture
 
 See http://marmelab.com/blog/2015/12/17/react-directory-structure.html
+And http://survivejs.com/webpack_react/structuring_react_projects/
 
 This application architecture follows a more modern convention for React application architecture than what most people use in their boilerplate code and tutorials. The structure of the Viu application will be organized hierarchically by _domain_ instead of _nature_ (the conventional architectural pattern).
-The application structure looks like this:
+The application structure looks something like this:
 
 ```
 root/
-    src/
-        index.html
-        main.js             // entry point for the React app
-        main.spec.js        // test files are labeled as "spec" and should reside alongside the files being tested
-        assets/             // contains any global assets required by the application (does not contain styles)
-        app/                // contains the majority of the application logic
-            App.js
-            app.scss        // contains the global application styles (layout, fonts, general styling, etc)
-            common/         // contains common components and utilities that affect the entire application
-            views/          // this directory houses the views/pages for the application along with all of their sub-components
-                project/    // each view will have its own set of actions, components, containers, and reducers
-                team/
-                user/
-                    user.scss        // contains the styles for the User component
-                    User.js         // contains the component AND container when necessary
-                    UserActions.js
-                    userReducer.js
+└── src/
+    ├── index.html
+    ├── main.jsx               // entry point for the React app
+    ├── main.scss
+    ├── app/
+    │   ├── App.jsx
+    │   ├── App.spec.js
+    │   └── app.scss
+    ├── common/
+    │   ├── Footer.jsx
+    │   ├── Header.jsx
+    │   └── rootReducer.js
+    ├── routes/
+    │   ├── Routes.jsx
+    │   ├── Routes.spec.js
+    │   └── index.js
+    └── views/
+        ├── Login/
+        │   ├── LoginView.jsx
+        │   ├── LoginView.spec.js
+        │   ├── index.js
+        │   └── login-view.scss
+        ├── Register/
+        │   ├── RegisterView.jsx
+        │   ├── RegisterView.spec.js
+        │   ├── index.js
+        │   └── register-view.scss
+        └── index.js
 ```
 
 ## Modifying the Build Configuration

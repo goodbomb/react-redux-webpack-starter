@@ -11,7 +11,7 @@ module.exports = {
         'webpack/hot/only-dev-server',
         'react-hot-loader/patch',
         'babel-polyfill',
-        './src/index.js'
+        './src/main.jsx'
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -32,7 +32,7 @@ module.exports = {
                 include: path.join(__dirname, 'src')
             },
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 loaders: [
                     'babel-loader?cacheDirectory',
                     'eslint-loader'
