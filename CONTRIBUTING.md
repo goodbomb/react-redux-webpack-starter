@@ -18,8 +18,8 @@
 
 ## Application Architecture
 
-See http://marmelab.com/blog/2015/12/17/react-directory-structure.html
-And http://survivejs.com/webpack_react/structuring_react_projects/
+See http://marmelab.com/blog/2015/12/17/react-directory-structure.html 
+and http://survivejs.com/webpack_react/structuring_react_projects/
 
 This application architecture follows a more modern convention for React application architecture than what most people use in their boilerplate code and tutorials. The structure of the Viu application will be organized hierarchically by _domain_ instead of _nature_ (the conventional architectural pattern).
 The application structure looks something like this:
@@ -43,17 +43,14 @@ root/
     │   ├── Routes.spec.js
     │   └── index.js
     └── views/
-        ├── Login/
+        ├── loginView/
         │   ├── LoginView.jsx
         │   ├── LoginView.spec.js
-        │   ├── index.js
         │   └── login-view.scss
-        ├── Register/
-        │   ├── RegisterView.jsx
-        │   ├── RegisterView.spec.js
-        │   ├── index.js
-        │   └── register-view.scss
-        └── index.js
+        └── registerView/
+            ├── RegisterView.jsx
+            ├── RegisterView.spec.js
+            └── register-view.scss
 ```
 
 ## Modifying the Build Configuration
