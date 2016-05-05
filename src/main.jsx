@@ -16,7 +16,7 @@ ReactDOM.render(
             <App />
         </AppContainer>
     </Provider>
-    , document.getElementById('root')
+    , document.getElementById('main')
 );
 
 /*eslint-disable */
@@ -32,7 +32,7 @@ if (module.hot) {
                     <NextApp />
                 </AppContainer>
             </Provider>
-            , document.getElementById('root')
+            , document.getElementById('main')
         );
     });
 }
