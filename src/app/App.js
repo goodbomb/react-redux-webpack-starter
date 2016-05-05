@@ -6,6 +6,6 @@ const App = function() {
     return (
         <div styleName="app">It's alive with Hot Module Replacement!</div>
     );
-}
+};
 
 export default cssModules(App, styles);

@@ -19,16 +19,19 @@ ReactDOM.render(
     , document.getElementById('root')
 );
 
+/*eslint-disable */
 if (module.hot) {
     module.hot.accept('./app/App', () => {
-
         const NextApp = require('./app/App').default;
 
         ReactDOM.render(
             <Provider store={store}>
-                <NextApp />
+                <AppContainer>
+                    <NextApp />
+                </AppContainer>
             </Provider>
             , document.getElementById('root')
         );
     });
 }
+/*eslint-enable */

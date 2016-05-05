@@ -35,7 +35,7 @@ module.exports = {
                 test: /\.js$/,
                 loaders: [
                     'babel-loader?cacheDirectory',
-                    // 'eslint-loader'
+                    'eslint-loader'
                 ],
                 include: path.join(__dirname, 'src')
             }
