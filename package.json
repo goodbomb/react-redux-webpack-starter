@@ -1,10 +1,9 @@
 {
-  "name": "react-redux-webpack-starter",
+  "name": "ViuF",
   "version": "1.0.0",
-  "description": "Base configuration for a React + Redux application that uses Webpack and NPM scripts for the build process.",
-  "repository": "https://github.com/goodbomb/react-redux-webpack-starter",
-  "author": "Ben Scott",
-  "license": "ISC",
+  "description": "The Front End application for the Vertex Script Generator - Viu",
+  "repository": "ssh://git@stash.ea.com:7999/pqe/viuf.git",
+  "private": true,
   "main": "src/main.js",
   "scripts": {
     "start": "rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack-dev-server --port 5000 --config webpack.config.dev.js --progress --colors",
