@@ -8,7 +8,7 @@
 4. Execute any of the following commands to get started:
 
 | Task              | Description   
-| -------------     |-------------
+| -------------     |:-------------:
 | npm start         | Builds the development environment and starts the dev server on `http://localhost:5000`.
 | npm run build     | Builds the production ready code. All files are generated in the `/dist` directory.
 | npm run build:run | Builds the production ready code and starts the server.js file on `http://localhost:5000` by default.
@@ -18,30 +18,39 @@
 
 ## Application Architecture
 
-See http://marmelab.com/blog/2015/12/17/react-directory-structure.html
+See http://marmelab.com/blog/2015/12/17/react-directory-structure.html 
+and http://survivejs.com/webpack_react/structuring_react_projects/
 
 This application architecture follows a more modern convention for React application architecture than what most people use in their boilerplate code and tutorials. The structure of the Viu application will be organized hierarchically by _domain_ instead of _nature_ (the conventional architectural pattern).
-The application structure looks like this:
+The application structure looks something like this:
 
 ```
 root/
-    src/
-        index.html
-        main.js             // entry point for the React app
-        main.spec.js        // test files are labeled as "spec" and should reside alongside the files being tested
-        assets/             // contains any global assets required by the application (does not contain styles)
-        app/                // contains the majority of the application logic
-            App.js
-            app.scss        // contains the global application styles (layout, fonts, general styling, etc)
-            common/         // contains common components and utilities that affect the entire application
-            views/          // this directory houses the views/pages for the application along with all of their sub-components
-                project/    // each view will have its own set of actions, components, containers, and reducers
-                team/
-                user/
-                    user.scss        // contains the styles for the User component
-                    User.js         // contains the component AND container when necessary
-                    UserActions.js
-                    userReducer.js
+└── src/
+    ├── index.html
+    ├── main.jsx               // entry point for the React app
+    ├── main.scss
+    ├── app/
+    │   ├── App.jsx
+    │   ├── App.spec.js
+    │   └── app.scss
+    ├── common/
+    │   ├── Footer.jsx
+    │   ├── Header.jsx
+    │   └── rootReducer.js
+    ├── routes/
+    │   ├── Routes.jsx
+    │   ├── Routes.spec.js
+    │   └── index.js
+    └── views/
+        ├── loginView/
+        │   ├── LoginView.jsx
+        │   ├── LoginView.spec.js
+        │   └── login-view.scss
+        └── registerView/
+            ├── RegisterView.jsx
+            ├── RegisterView.spec.js
+            └── register-view.scss
 ```
 
 ## Modifying the Build Configuration
@@ -118,7 +127,9 @@ export default CSSModules(App, styles);
 
 CSS styles are linted using [StyleLint][StyleLint].
 
-The full set of style lint rules are found in the ```.stylelintrc``` file. See [the StyleLint rule definitions][StyleLintDefs] for a full explanation of what each rule does.
+The full set of style lint rules are found in the ```.stylelintrc``` file. See [the StyleLint rule definitions][StyleLintDefs] for a full explanation fo what each rukle does.
+
+These rules are not set in stone. EA does not currently have a standard, so if there is a good reason to modify one of the rules, make your case to the Front End Lead.
 
 
 ## Tests
@@ -177,4 +188,3 @@ Our tests use [Mocha][Mocha] as the build runner and [Chai][Chai] as the asserti
 [React CSS Modules]: https://github.com/gajus/react-css-modules
 [Mocha]: https://mochajs.org/
 [Chai]: http://chaijs.com/api/assert/
-
