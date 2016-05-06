@@ -47,10 +47,11 @@ root/
         │   ├── LoginView.jsx
         │   ├── LoginView.spec.js
         │   └── login-view.scss
-        └── registerView/
-            ├── RegisterView.jsx
-            ├── RegisterView.spec.js
-            └── register-view.scss
+        ├── registerView/
+        │   ├── RegisterView.jsx
+        │   ├── RegisterView.spec.js
+        │   └── register-view.scss
+        └── index.js
 ```
 
 ## Modifying the Build Configuration
