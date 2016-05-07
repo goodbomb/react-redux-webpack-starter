@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-describe('main entry file', () => {
+describe('App', () => {
     it('should be always true', () => {
         assert.equal(1, 1);
     });

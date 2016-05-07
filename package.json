@@ -1,14 +1,15 @@
 {
-  "name": "ViuF",
+  "name": "react-redux-webpack-starter",
   "version": "1.0.0",
-  "description": "The Front End application for the Vertex Script Generator - Viu",
-  "repository": "ssh://git@stash.ea.com:7999/pqe/viuf.git",
-  "private": true,
+  "description": "Base configuration for a React + Redux application that uses Webpack and NPM scripts for the build process.",
+  "repository": "https://github.com/goodbomb/react-redux-webpack-starter",
+  "author": "Ben Scott",
+  "license": "ISC",
   "main": "src/main.js",
   "scripts": {
-    "start": "rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack-dev-server --port 5000 --config webpack.config.dev.js --progress --colors",
-    "build": "rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack --optimize-minimize --optimize-occurrence-order --optimize-dedupe --progress --colors",
-    "build:start": "npm run build && node server",
+    "start": "rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack-dev-server --port 5000 --config webpack/webpack.config.dev.js --progress --colors",
+    "build": "rimraf dist && mkdir dist && cp src/index.html dist/index.html && webpack --config webpack/webpack.config.prod.js --optimize-minimize --optimize-occurrence-order --optimize-dedupe --progress --colors",
+    "build:start": "npm run build && node server.js",
     "lint:js": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache --format './node_modules/eslint-friendly-formatter'",
     "test": "cross-env NODE_ENV=test mocha ./src/**/*.spec.js --compilers js:babel-register --require chai --require sinon --reporter spec --recursive --growl"
   },

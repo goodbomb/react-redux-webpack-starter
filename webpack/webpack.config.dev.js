@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var precss = require('precss');
 var fontMagician  = require('postcss-font-magician');
@@ -8,39 +7,49 @@ var styleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
     entry: [
+        'webpack-dev-server/client?http://localhost:5000',
+        'webpack/hot/only-dev-server',
+        'react-hot-loader/patch',
         'babel-polyfill',
-        './src/main.jsx',
+        './src/main.jsx'
     ],
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '..', 'dist'),
         publicPath: '/',
         filename: 'bundle.js'
     },
-    debug: false,
-    devtool: 'cheap-module-source-map',
+    debug: true,
+    devtool: 'eval',
     module: {
         loaders: [
             {
                 test: /\.(css|scss)$/,
-                loader: ExtractTextPlugin.extract(
-                    'style',
-                    'css?sourceMap',
+                loaders: [
+                    'style?sourceMap',
+                    'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
                     'postcss'
-                ),
-                include: path.join(__dirname, 'src')
+                ],
+                include: path.resolve(__dirname, '..', 'src')
             },
             {
                 test: /\.jsx?$/,
                 loaders: [
-                    'babel-loader?presets[]=es2015,presets[]=stage-1,presets[]=react',
+                    'babel-loader?cacheDirectory',
                     'eslint-loader'
                 ],
-                include: path.join(__dirname, 'src')
+                include: path.resolve(__dirname, '..', 'src')
             }
         ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
+    },
+    devServer: {
+        hot: true,
+        historyApiFallback: {
+            index: '/'
+        },
+        contentBase: './src'
     },
     eslint: {
         configFile: '.eslintrc',
@@ -48,9 +57,6 @@ module.exports = {
         ignorePath: '.gitignore',
         cache: true,
         formatter: require('eslint-friendly-formatter')
-    },
-    stylelint: {
-        configFile: path.join(__dirname, '.stylelint.config.json')
     },
     postcss: function () {
         return [
@@ -61,16 +67,14 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
-        }),
-        new ExtractTextPlugin('bundle.css', {
-            allChunks: true
+            'process.env.NODE_ENV': JSON.stringify('development')
         }),
         new styleLintPlugin({
-            configFile: path.join(__dirname, '.stylelintrc'),
-            context: path.join(__dirname, 'src'),
+            configFile: path.resolve(__dirname, '..', '.stylelintrc'),
+            context: path.resolve(__dirname, '..', 'src'),
             files: '**/*.?(scss|css)',
-            failOnError: false,
-        })
+            failOnError: false
+        }),
+        new webpack.HotModuleReplacementPlugin(),
     ]
 };
