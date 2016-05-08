@@ -6,6 +6,7 @@ import { AppContainer } from 'react-hot-loader';
 
 import App from './app/App';
 import rootReducer from './common/rootReducer';
+import './main.scss';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(rootReducer);
