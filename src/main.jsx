@@ -2,15 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 import { AppContainer } from 'react-hot-loader';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import App from './app/App';
-import rootReducer from './common/rootReducer';
+import App from 'app/App';
+import rootReducer from 'common/rootReducer';
 import './main.scss';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 const history = syncHistoryWithStore(browserHistory, store);
 
