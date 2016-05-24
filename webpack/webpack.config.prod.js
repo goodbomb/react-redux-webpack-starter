@@ -4,6 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var fontMagician  = require('postcss-font-magician');
 var simpleVars = require('postcss-simple-vars');
+var cssNested = require('postcss-nested');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
@@ -57,6 +58,7 @@ module.exports = {
         return [
             autoprefixer,
             simpleVars,
+            cssNested,
             fontMagician
         ];
     },

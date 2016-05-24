@@ -74,7 +74,7 @@
         "number-zero-length-no-unit": true,
         "property-case": "lower",
         "property-no-vendor-prefix": true,
-        "root-no-standard-properties": true,
+        "root-no-standard-properties": false,
         "rule-nested-empty-line-before": "never",
         "rule-non-nested-empty-line-before": "always",
         "selector-attribute-brackets-space-inside": "never",
