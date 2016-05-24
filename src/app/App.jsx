@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import cssModules from 'react-css-modules';
+import { Router } from 'react-router';
 import styles from './app.scss';
+import routes from '../common/routes';
 
-const App = function() {
+const App = function(props) {
     return (
         <div>
             <Helmet
@@ -11,9 +13,14 @@ const App = function() {
                 titleTemplate="MySite.com - %s"
                 defaultTitle="My Default Title"
             />
-            <div styleName="app">It's alive with Hot Module Replacement!</div>
+
+            <Router routes={routes} history={props.history} />
         </div>
     );
+};
+
+App.propTypes = {
+    history: PropTypes.object
 };
 
 export default cssModules(App, styles);

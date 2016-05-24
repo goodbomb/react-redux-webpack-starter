@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { AppContainer } from 'react-hot-loader';
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from './app/App';
 import rootReducer from './common/rootReducer';
@@ -10,11 +12,12 @@ import './main.scss';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(rootReducer);
+const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
     <Provider store={store}>
         <AppContainer>
-            <App />
+            <App history={history} />
         </AppContainer>
     </Provider>
     , document.getElementById('main')

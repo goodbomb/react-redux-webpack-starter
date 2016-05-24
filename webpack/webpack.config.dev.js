@@ -42,6 +42,10 @@ module.exports = {
         ]
     },
     resolve: {
+        modulesDirectories: [
+            'src',
+            'node_modules'
+        ],
         extensions: ['', '.js', '.jsx']
     },
     devServer: {
