@@ -1,7 +1,14 @@
+:global {
+    body {
+        background-color: #1fb6ff;
+        font-family: 'Open Sans', sans-serif;
+    }
+}
 
-:local .header {
-    background-color: #ffffff;
-    font-family: 'Open Sans', sans-serif;
-    padding: 20px 0;
-    text-align: center;
+:local {
+    .header {
+        background-color: #ffffff;
+        padding: 20px 0;
+        text-align: center;
+    }
 }

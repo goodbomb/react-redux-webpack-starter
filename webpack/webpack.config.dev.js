@@ -1,8 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
-var precss = require('precss');
 var fontMagician  = require('postcss-font-magician');
+var simpleVars = require('postcss-simple-vars');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
@@ -65,7 +65,7 @@ module.exports = {
     postcss: function () {
         return [
             autoprefixer,
-            precss,
+            simpleVars,
             fontMagician
         ];
     },
