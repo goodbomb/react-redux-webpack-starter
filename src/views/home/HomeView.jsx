@@ -1,6 +1,6 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
-import styles from './home-view.scss';
+import styles from './home-view.css';
 
 const HomeView = function() {
     return (

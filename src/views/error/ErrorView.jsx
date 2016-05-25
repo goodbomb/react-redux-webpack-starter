@@ -1,6 +1,6 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
-import styles from './error-view.scss';
+import styles from './error-view.css';
 
 const ErrorView = function() {
     return (

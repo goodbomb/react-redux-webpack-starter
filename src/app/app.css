@@ -1,11 +1,8 @@
-:global {
+:local {
     body {
-        background-color: #1fb6ff;
+        background-color: $primary-color;
         font-family: 'Open Sans', sans-serif;
     }
-}
-
-:local {
     .header {
         background-color: #ffffff;
         padding: 20px 0;

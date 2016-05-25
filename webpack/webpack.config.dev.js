@@ -6,6 +6,8 @@ var simpleVars = require('postcss-simple-vars');
 var cssNested = require('postcss-nested');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 
+var cssVariables = require('../src/config/cssVariables.js');
+
 module.exports = {
     entry: [
         'webpack-dev-server/client?http://localhost:5000',
@@ -66,7 +68,11 @@ module.exports = {
     postcss: function () {
         return [
             autoprefixer,
-            simpleVars,
+            simpleVars({
+                variables: function () {
+                    return cssVariables;
+                }
+            }),
             cssNested,
             fontMagician
         ];

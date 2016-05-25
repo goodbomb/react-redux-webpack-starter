@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import cssModules from 'react-css-modules';
 import { Router } from 'react-router';
-import styles from './app.scss';
+import styles from './app.css';
 import { routes } from 'common';
 
 const App = function(props) {
