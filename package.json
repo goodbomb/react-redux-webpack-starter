@@ -42,7 +42,7 @@
     "rimraf": "^2.5.2",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.1",
-    "stylelint": "^6.2.2",
+    "stylelint": "^6.5.1",
     "stylelint-webpack-plugin": "^0.2.0",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
