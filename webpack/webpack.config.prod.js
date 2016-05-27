@@ -24,9 +24,8 @@ module.exports = {
             {
                 test: /\.(css|scss)$/,
                 loader: ExtractTextPlugin.extract(
-                    'style',
-                    'css?sourceMap',
-                    'postcss'
+                    'style?sourceMap',
+                    'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss',
                 ),
                 include: path.resolve(__dirname, '..', 'src')
             },
@@ -57,7 +56,11 @@ module.exports = {
     postcss: function () {
         return [
             autoprefixer,
-            simpleVars,
+            simpleVars({
+                variables: function () {
+                    return cssVariables;
+                }
+            }),
             cssNested,
             fontMagician
         ];
