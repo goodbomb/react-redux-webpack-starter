@@ -1,6 +1,4 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
-import styles from './error-view.css';
 
 const ErrorView = function() {
     return (
@@ -10,4 +8,4 @@ const ErrorView = function() {
     );
 };
 
-export default cssModules(ErrorView, styles);
+export default ErrorView;

@@ -1,8 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import cssModules from 'react-css-modules';
 import { Router } from 'react-router';
-import styles from './app.css';
 import { routes } from 'common';
 
 const App = function(props) {
@@ -23,4 +22,4 @@ App.propTypes = {
     history: PropTypes.object
 };
 
-export default cssModules(App, styles);
+export default App;

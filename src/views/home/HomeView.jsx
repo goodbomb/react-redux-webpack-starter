@@ -1,6 +1,4 @@
 import React from 'react';
-import cssModules from 'react-css-modules';
-import styles from './home-view.css';
 
 const HomeView = function() {
     return (
@@ -10,4 +8,4 @@ const HomeView = function() {
     );
 };
 
-export default cssModules(HomeView, styles);
+export default HomeView;

@@ -7,5 +7,12 @@
 /dist/*
 .eslintcache
 
+# Configuration Files
+.env
+
 # System files
 .DS_Store
+npm-debug.log
+
+# Editor files
+.vscode/

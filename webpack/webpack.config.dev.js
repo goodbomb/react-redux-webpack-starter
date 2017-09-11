@@ -1,17 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
-var fontMagician  = require('postcss-font-magician');
-var simpleVars = require('postcss-simple-vars');
-var cssNested = require('postcss-nested');
 var styleLintPlugin = require('stylelint-webpack-plugin');
 
-var cssVariables = require('../src/config/cssVariables.js');
+var API_URL = process.env.API_URL || 'http://localhost:5555/';
 
 module.exports = {
     entry: [
-        'webpack-dev-server/client?http://localhost:5000',
-        'webpack/hot/only-dev-server',
+        'webpack-hot-middleware/client?reload=true?path=http://localhost:5000/__webpack_hmr',
         'react-hot-loader/patch',
         'babel-polyfill',
         './src/main.jsx'
@@ -21,60 +16,82 @@ module.exports = {
         publicPath: '/',
         filename: 'bundle.js'
     },
-    debug: true,
-    devtool: 'eval',
+    devtool: 'eval-source-map',
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.(css|scss)$/,
-                loaders: [
-                    'style?sourceMap',
-                    'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss',
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: (loader) => [
+                                require('autoprefixer'),
+                                require('postcss-simple-vars')({
+                                    variables: () => require('../src/theme/styleConfig.js')
+                                }),
+                                require('postcss-nested'),
+                                require('postcss-calc'),
+                                require('postcss-font-magician')
+                            ]
+                        }
+                    }
                 ],
                 include: path.resolve(__dirname, '..', 'src')
             },
             {
                 test: /\.jsx?$/,
-                loaders: [
-                    'babel-loader?cacheDirectory',
-                    'eslint-loader'
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: true,
+                            presets: [
+                                'es2015',
+                                'react',
+                                'stage-0'
+                            ],
+                            plugins: [
+                                'react-hot-loader/babel',
+                                'transform-class-properties',
+                                'transform-decorators-legacy',
+                                ['module-resolver', {
+                                    root: ['./src'],
+                                    alias: {
+                                        test: './test',
+                                        underscore: 'lodash'
+                                    }
+                                }]
+                            ]
+                        }
+                    },
+                    {
+                        loader: 'eslint-loader?{rules:{"no-console":0}}'
+                    }
                 ],
-                include: path.resolve(__dirname, '..', 'src')
+                include: path.resolve(__dirname, '..', 'src'),
             }
         ]
     },
     resolve: {
-        modulesDirectories: [
+        modules: [
             'src',
             'node_modules'
         ],
-        extensions: ['', '.js', '.jsx']
-    },
-    devServer: {
-        hot: true,
-        historyApiFallback: {
-            index: '/'
-        },
-        contentBase: './src'
-    },
-    eslint: {
-        configFile: '.eslintrc',
-        extensions: ['.js', '.jsx'],
-        ignorePath: '.gitignore',
-        cache: true,
-        formatter: require('eslint-friendly-formatter')
-    },
-    postcss: function () {
-        return [
-            autoprefixer,
-            simpleVars({
-                variables: function () {
-                    return cssVariables;
-                }
-            }),
-            cssNested,
-            fontMagician
-        ];
+        extensions: ['.js', '.jsx', '.css', '.scss']
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -87,5 +104,18 @@ module.exports = {
             failOnError: false
         }),
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                eslint: {
+                    configFile: '.eslintrc',
+                    extensions: ['.js', '.jsx'],
+                    ignorePath: '.gitignore',
+                    cache: true,
+                    formatter: require('eslint-friendly-formatter')
+                },
+                debug: true
+            }
+        })
     ]
 };

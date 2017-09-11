@@ -1,7 +1,6 @@
-import React, { PropTypes } from 'react';
-import cssModules from 'react-css-modules';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Header from './Header';
-import styles from '../app.scss';
 
 const Layout = function(props) {
     return (
@@ -17,4 +16,4 @@ Layout.propTypes = {
     children: PropTypes.object
 };
 
-export default cssModules(Layout, styles);
+export default Layout;

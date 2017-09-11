@@ -7,24 +7,27 @@
         ".es6-eslintrc"
     ],
     "env": {
-        "browser": true
+        "browser": true,
+        "es6": true
     },
+    "parser": "babel-eslint",
     "parserOptions": {
         "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true,
-            "modules": true
+            "modules": true,
+            "experimentalObjectRestSpread": true
         }
     },
     "plugins": [
-        "react"
+        "react",
+        "promise"
     ],
     "rules": {
-        "max-len": [2, 80, {"ignorePattern": "\\s*<"}],
         "jsx-quotes": [2, "prefer-double"],
         "react/display-name": [0, { "ignoreTranspilerName": false }],
         "react/forbid-prop-types": [0, { "forbid": ["any", "array", "object"] }],
-        "react/jsx-boolean-value": [2, "never"],
+        "react/jsx-boolean-value": [1, "always"],
         "react/jsx-closing-bracket-location": [2, "line-aligned"],
         "react/jsx-curly-spacing": [2, "never", { "allowMultiline": true }],
         "react/jsx-handler-names": [0, {
@@ -52,12 +55,12 @@
             "ignoreCase": false,
             "callbacksLast": false,
         }],
-        "react/jsx-uses-react": [2, { "pragma": "React" }],
-        "react/jsx-uses-vars": 2,
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
         "react/no-danger": 0,
-        "react/no-deprecated": [1, { "react": "0.14.0" }],
-        "react/no-did-mount-set-state": [2, "allow-in-func"],
-        "react/no-did-update-set-state": [2, "allow-in-func"],
+        "react/no-deprecated": "error",
+        "react/no-did-mount-set-state": [2],
+        "react/no-did-update-set-state": [2],
         "react/no-direct-mutation-state": 0,
         "react/no-is-mounted": 2,
         "react/no-multi-comp": [2, { "ignoreStateless": true }],
@@ -72,8 +75,15 @@
         "react/require-render-return": 2,
         "react/self-closing-comp": 2,
         "react/jsx-space-before-closing": [2, "always"],
+        "react/jsx-wrap-multilines": ["error", {
+            "declaration": true,
+            "assignment": true,
+            "return": true,
+            "arrow": true
+        }],
         "react/sort-comp": [2, {
             "order": [
+                "constructor",
                 "static-methods",
                 "lifecycle",
                 "/^on.+$/",
@@ -83,13 +93,20 @@
                 "render"
             ],
         }],
-        "react/wrap-multilines": [2, {
-            "declaration": true,
-            "assignment": true,
-            "return": true
-        }],
         "react/jsx-first-prop-new-line": [2, "multiline"],
         "react/jsx-equals-spacing": [2, "never"],
-        "react/jsx-indent": [2, 4]
+        "react/jsx-indent": [2, 4],
+        "complexity": [0, 0],
+        "dot-notation": [2, {
+            "allowKeywords": true,
+            "allowPattern": "^[a-z]+(_[a-z]+)+$" // Allow snake case.
+        }],
+        "max-len": [2, 160, {"ignorePattern": "\\s*<"}],
+        "new-cap": [2, {
+            "newIsCap": true,
+            "capIsNew": false
+        }],
+        "no-console": [2, {allow: ["info", warn", "error"]}],
+        "spaced-comment": [2, "always", { "exceptions": ["*"] }]
     }
 }
