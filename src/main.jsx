@@ -9,7 +9,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from 'app/App';
 import rootReducer from 'common/rootReducer';
-import './main.scss';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
