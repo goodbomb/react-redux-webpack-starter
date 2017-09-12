@@ -52,34 +52,32 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            cacheDirectory: true,
-                            presets: [
-                                ['es2015', { modules: false }],
-                                'react',
-                                'stage-1'
-                            ],
-                            plugins: [
-                                'react-hot-loader/babel',
-                                'transform-class-properties',
-                                'transform-decorators-legacy',
-                                ['module-resolver', {
-                                    root: ['./src'],
-                                    alias: {
-                                        test: './test',
-                                        underscore: 'lodash'
-                                    }
-                                }]
-                            ]
-                        }
-                    },
-                    {
-                        loader: 'eslint-loader'
-                    }
-                ],
+                loader: 'babel-loader',
+                include: path.resolve(__dirname, '..', 'src'),
+                options: {
+                    cacheDirectory: true,
+                    presets: [
+                        ['es2015', { modules: false }],
+                        'react',
+                        'stage-1'
+                    ],
+                    plugins: [
+                        'react-hot-loader/babel',
+                        'transform-class-properties',
+                        'transform-decorators-legacy',
+                        ['module-resolver', {
+                            root: ['./src'],
+                            alias: {
+                                test: './test',
+                                underscore: 'lodash'
+                            }
+                        }]
+                    ]
+                }
+            },
+            {
+                test: /\.jsx?$/,
+                loader: 'eslint-loader',
                 include: path.resolve(__dirname, '..', 'src')
             }
         ]

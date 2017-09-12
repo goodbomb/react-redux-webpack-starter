@@ -1,19 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Header from './Header';
+import {
+    Switch,
+    Route } from 'react-router-dom';
+import { HomeView, ErrorView } from 'app';
 
-const Layout = function(props) {
+const Layout = function() {
     return (
-        <div>
+        <div className="layout">
             <Header />
 
-            {props.children}
+            <Switch>
+                <Route exact={true} path="/" component={HomeView} />
+                <Route component={ErrorView} />
+            </Switch>
         </div>
     );
-};
-
-Layout.propTypes = {
-    children: PropTypes.object
 };
 
 export default Layout;

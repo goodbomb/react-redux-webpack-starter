@@ -4,23 +4,25 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { AppContainer } from 'react-hot-loader';
-import { browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter } from 'react-router-redux';
 
 import App from 'app/App';
 import rootReducer from 'common/rootReducer';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
-const history = syncHistoryWithStore(browserHistory, store);
+const history = createHistory();
 
 ReactDOM.render(
     <Provider store={store}>
         <AppContainer>
-            <App history={history} />
+            <ConnectedRouter history={history}>
+                <App />
+            </ConnectedRouter>
         </AppContainer>
     </Provider>
-    , document.getElementById('main')
+    , document.getElementById('root')
 );
 
 /*eslint-disable */
@@ -33,10 +35,10 @@ if (module.hot) {
         ReactDOM.render(
             <Provider store={store}>
                 <AppContainer>
-                    <NextApp />
+                    <NextApp history={history} />
                 </AppContainer>
             </Provider>
-            , document.getElementById('main')
+            , document.getElementById('root')
         );
     });
 }

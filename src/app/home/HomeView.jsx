@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomeView = function() {
     return (
-        <div>
+        <div className="home">
             I'm home!
         </div>
     );
