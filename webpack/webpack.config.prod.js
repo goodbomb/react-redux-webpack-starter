@@ -1,7 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var styleLintPlugin = require('stylelint-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -18,66 +16,38 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.jsx?$/,
                 use: [
                     {
-                        loader: 'style-loader',
+                        loader: 'babel-loader',
                         options: {
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: (loader) => [
-                                require('autoprefixer'),
-                                require('postcss-simple-vars')({
-                                    variables: () => require('../src/theme/styleConfig.js')
-                                }),
-                                require('postcss-nested'),
-                                require('postcss-calc'),
-                                require('postcss-font-magician')
+                            cacheDirectory: true,
+                            presets: [
+                                ['es2015', { modules: false }],
+                                'react',
+                                'stage-1'
+                            ],
+                            plugins: [
+                                'react-hot-loader/babel',
+                                'transform-class-properties',
+                                'transform-decorators-legacy',
+                                ['module-resolver', {
+                                    root: ['./src'],
+                                    alias: {
+                                        test: './test',
+                                        underscore: 'lodash'
+                                    }
+                                }]
                             ]
                         }
+                    },
+                    {
+                        loader: 'eslint-loader'
+                    },
+                    {
+                        loader: 'stylelint-custom-processor-loader'
                     }
                 ],
-                include: path.resolve(__dirname, '..', 'src')
-            },
-            {
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                include: path.resolve(__dirname, '..', 'src'),
-                options: {
-                    cacheDirectory: true,
-                    presets: [
-                        ['es2015', { modules: false }],
-                        'react',
-                        'stage-1'
-                    ],
-                    plugins: [
-                        'react-hot-loader/babel',
-                        'transform-class-properties',
-                        'transform-decorators-legacy',
-                        ['module-resolver', {
-                            root: ['./src'],
-                            alias: {
-                                test: './test',
-                                underscore: 'lodash'
-                            }
-                        }]
-                    ]
-                }
-            },
-            {
-                test: /\.jsx?$/,
-                loader: 'eslint-loader',
                 include: path.resolve(__dirname, '..', 'src')
             }
         ]
@@ -87,23 +57,13 @@ module.exports = {
             'src',
             'node_modules'
         ],
-        extensions: ['.js', '.jsx', '.css', '.scss']
+        extensions: ['.js', '.jsx']
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
+            'process.env.NODE_ENV': JSON.stringify('prod')
         }),
         new webpack.NoErrorsPlugin(),
-        new styleLintPlugin({
-            configFile: path.resolve(__dirname, '..', '.stylelintrc'),
-            context: path.resolve(__dirname, '..', 'src'),
-            files: '**/*.?(scss|css)',
-            failOnError: false
-        }),
-        new ExtractTextPlugin({
-            filename: 'bundle.css',
-            allChunks: true
-        }),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             chunksSortMode: 'auto',

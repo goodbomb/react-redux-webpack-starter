@@ -33,7 +33,7 @@ var htmlTemplate = `
 </html>
 `;
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'prod') {
     var webpackDevMiddleware = require('webpack-dev-middleware');
     var webpackHotMiddleware = require('webpack-hot-middleware');
     var webpack = require('webpack');

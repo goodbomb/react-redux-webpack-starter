@@ -1,4 +1,9 @@
 {
+    "processors": ["stylelint-processor-styled-components"],
+    "extends": [
+        "stylelint-config-standard"
+    ],
+    "syntax": "scss",
     "_comment": "See rule definitions: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules.md",
     "rules": {
         "at-rule-name-case": "lower",
