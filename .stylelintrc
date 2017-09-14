@@ -1,10 +1,15 @@
 {
-    "processors": ["stylelint-processor-styled-components"],
+    "_comment": "See rule definitions: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules.md",
+    "processors": [
+        "stylelint-processor-styled-components"
+    ],
     "extends": [
         "stylelint-config-standard"
     ],
+    "plugins": [
+		"stylelint-order"
+	],
     "syntax": "scss",
-    "_comment": "See rule definitions: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules.md",
     "rules": {
         "at-rule-name-case": "lower",
         "at-rule-no-vendor-prefix": true,
@@ -68,6 +73,7 @@
         "number-leading-zero": "always",
         "number-max-precision": 2,
         "number-no-trailing-zeros": true,
+        "order/properties-alphabetical-order": true,
         "property-case": "lower",
         "property-no-vendor-prefix": true,
         "selector-attribute-brackets-space-inside": "never",
