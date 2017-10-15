@@ -19,7 +19,6 @@ var htmlTemplate = `
         <meta name="viewport" content="width=device-width, maximum-scale = 1.0">
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" rel="stylesheet">
-        <link href="/bundle.css" rel="stylesheet">
     </head>
 
     <body>
