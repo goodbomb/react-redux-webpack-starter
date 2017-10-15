@@ -92,9 +92,7 @@ We are using [Styled-Components][Styled-Components] for styling React components
 
 CSS styles are linted using [StyleLint][StyleLint].
 
-The full set of style lint rules are found in the ```.stylelintrc``` file. See [the StyleLint rule definitions][StyleLintDefs] for a full explanation fo what each rukle does.
-
-These rules are not set in stone, so if there is a good reason to modify one of the rules, make your case.
+The full set of style lint rules are found in the ```.stylelintrc``` file. See [the StyleLint rule definitions][StyleLintDefs] for a full explanation fo what each rule does.
 
 
 ## Tests
