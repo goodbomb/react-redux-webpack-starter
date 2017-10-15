@@ -4,21 +4,22 @@
 
 1. Fork this repository.
 2. Clone your forked repository.
-3. Run ```npm install``` from the command line inside of the Viu-FE directory.
+3. Run ```npm install``` from the command line inside of the root directory.
 4. Execute any of the following commands to get started:
 
-| Task              | Description   
-| -------------     | -------------
-| npm start         | Builds the development environment and starts the dev server on `http://localhost:5000`.
-| npm run build     | Builds the production ready code. All files are generated in the `/dist` directory.
-| npm run build:run | Builds the production ready code and starts the server.js file on `http://localhost:5000` by default.
-| npm run lint:js   | Manually execute the javascript linter (eslint). This is also done automatically during the build process.
-| npm test          | Executes all tests in the `./src` directory.
+| Task                  | Description
+| -------------         | -------------
+| npm start             | Builds the development environment and starts the dev server on `http://localhost:5000`.
+| npm run build         | Builds the production ready code. All files are generated in the `/dist` directory.
+| npm run build:run     | Builds the production ready code and starts the server.js file on `http://localhost:5000` by default.
+| npm test              | Executes all tests in the `./src` directory.
+| npm run test:watch    | Executes all tests in the `./src` directory and watches for changes to tests.
+| npm run test:coverage | Executes all tests in the `./src` directory and generates coverage reports.
 
 
 ## Application Architecture
 
-See http://marmelab.com/blog/2015/12/17/react-directory-structure.html 
+See http://marmelab.com/blog/2015/12/17/react-directory-structure.html
 and http://survivejs.com/webpack_react/structuring_react_projects/
 
 This application architecture follows a more modern convention for React application architecture than what most people use in their boilerplate code and tutorials. The structure of the Viu application will be organized hierarchically by _domain_ instead of _nature_ (the conventional architectural pattern).
@@ -29,29 +30,17 @@ root/
 └── src/
     ├── index.html
     ├── main.jsx               // entry point for the React app
-    ├── main.scss
     ├── app/
     │   ├── App.jsx
-    │   ├── App.spec.js
-    │   └── app.scss
-    ├── common/
-    │   ├── Footer.jsx
-    │   ├── Header.jsx
-    │   └── rootReducer.js
-    ├── routes/
-    │   ├── Routes.jsx
-    │   ├── Routes.spec.js
-    │   └── index.js
-    └── views/
-        ├── loginView/
-        │   ├── LoginView.jsx
-        │   ├── LoginView.spec.js
-        │   └── login-view.scss
-        ├── registerView/
-        │   ├── RegisterView.jsx
-        │   ├── RegisterView.spec.js
-        │   └── register-view.scss
-        └── index.js
+    │   ├── index.js
+    │   ├── layout/
+    │       ├── index.js
+    │       ├── HeaderComponent.jsx
+    │       ├── HeaderComponent.spec.js
+    │       └── Layout.jsx
+    └──  common/
+        ├── index.js
+        └── rootReducer.js
 ```
 
 ## Modifying the Build Configuration
@@ -99,32 +88,7 @@ export default MyComponent;
 
 ## CSS Styles
 
-We are using [PostCSS][PostCSS] coupled with [PreCSS][PreCSS] and [React CSS Modules][React CSS Modules] for styling our react modules. This means that CSS files can be written in vanilla CSS or SCSS syntax, but **we since we are using _SCSS_ syntax**, all CSS files should use the ```.scss``` extension to make it clear that the file contains non-vanilla CSS. 
-
-_All CSS files should reside alongside the React component that the styles apply to_. For example:
-
-```
-views/
-    user/
-        user.scss // contains the styles for the User component
-        User.js
-```
-
-Since we are using React CSS Modules, adding styles to HTML work a bit differently. We do something like this (note the use of the CSSModules class when exporting the component, and the "styleName" syntax in the JSX):
-
-```
-import React from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './app.css';
-
-const App = function() {
-    return (
-        <div styleName="app">It's alive with Hot Module Replacement!</div>
-    );
-};
-
-export default CSSModules(App, styles);
-```
+We are using [Styled-Components][Styled-Components] for styling React components. It is a powerful library that allows you to write styles using standard CSS syntax while leveraging the full power of JavaScript.
 
 CSS styles are linted using [StyleLint][StyleLint].
 
@@ -143,7 +107,7 @@ src/
     main.spec.js
 ```
 
-Our tests use [Mocha][Mocha] as the build runner and [Chai][Chai] as the assertion library. Tests should be written using the standard test ```assert``` convention, _not_ the BDD-style ```expect``` convention.
+Our tests use [Jest][Jest] and [Enzyme][Enzyme].
 
 
 ## Tech Stack
@@ -152,40 +116,33 @@ Our tests use [Mocha][Mocha] as the build runner and [Chai][Chai] as the asserti
 - React
 - Redux
 
-**HTML Framework(s):**
-- React Toolbox
-
-**CSS Processor:**
-- PostCSS + Plugins (PreCSS, React CSS Modules, etc)
-
 **Build Tools(s):**
 - Webpack
 - NPM Scripts
 
 **Test Framework(s):**
-- Mocha / Chai / Sinon (for unit testing)
-- Vertex (for functional testing)
+- Jest
+- Enzyme
+
+**CSS Styling:**
+- Styled Components
 
 **Linting and Checkstyle:**
 - ESLint
 - ESLint React Plugin
 - ESLint Airbnb configuration
-- StyleLint postCSS plugin
+- StyleLint
 
 **Other Tools:**
 - ES6
 - Babel (for converting ES6 into ES5 syntax)
 - Babel Webpack Loader
-- Material Design Icons
 
 
 
-
+[Styled-Components]: https://www.styled-components.com/
 [StyleLint]: https://github.com/stylelint/stylelint
 [StyleLintDefs]: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules.md
 [Webpack]: https://webpack.github.io/
-[PostCSS]: https://github.com/postcss/postcss
-[PreCSS]: https://github.com/jonathantneal/precss
-[React CSS Modules]: https://github.com/gajus/react-css-modules
-[Mocha]: https://mochajs.org/
-[Chai]: http://chaijs.com/api/assert/
+[Jest]: http://facebook.github.io/jest/
+[Enzyme]: http://airbnb.io/enzyme/
