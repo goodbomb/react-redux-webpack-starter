@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { palette } from 'theme';
 
-const Header = styled.div`
+export const Header = styled.div`
     align-items: center;
     background-color: ${palette.primaryColor};
     display: flex;
@@ -13,7 +13,7 @@ const Header = styled.div`
 const HeaderComponent = function() {
     return (
         <Header className="header">
-            I'm a header!
+            Header content
         </Header>
     );
 };

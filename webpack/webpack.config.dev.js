@@ -25,11 +25,6 @@ module.exports = {
                         loader: 'babel-loader',
                         options: {
                             cacheDirectory: true,
-                            presets: [
-                                'es2015',
-                                'react',
-                                'stage-0'
-                            ],
                             plugins: [
                                 'react-hot-loader/babel',
                                 'transform-class-properties',
@@ -37,7 +32,6 @@ module.exports = {
                                 ['module-resolver', {
                                     root: ['./src'],
                                     alias: {
-                                        test: './test',
                                         underscore: 'lodash'
                                     }
                                 }]

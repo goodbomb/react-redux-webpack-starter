@@ -8,7 +8,8 @@
     ],
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest": true
     },
     "parser": "babel-eslint",
     "parserOptions": {
@@ -20,8 +21,9 @@
         }
     },
     "plugins": [
-        "react",
-        "promise"
+        "jest",
+        "promise",
+        "react"
     ],
     "rules": {
         "jsx-quotes": [2, "prefer-double"],
@@ -96,6 +98,12 @@
         "react/jsx-first-prop-new-line": [2, "multiline"],
         "react/jsx-equals-spacing": [2, "never"],
         "react/jsx-indent": [2, 4],
+        // Jest rules
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/valid-expect": "error",
+        // overrides
         "complexity": [0, 0],
         "dot-notation": [2, {
             "allowKeywords": true,
@@ -106,7 +114,7 @@
             "newIsCap": true,
             "capIsNew": false
         }],
-        "no-console": [2, {allow: ["info", warn", "error"]}],
+        "no-console": [2, {"allow": ["info", "warn", "error"]}],
         "spaced-comment": [2, "always", { "exceptions": ["*"] }]
     }
 }

@@ -25,7 +25,7 @@ module.exports = {
                             presets: [
                                 ['es2015', { modules: false }],
                                 'react',
-                                'stage-1'
+                                'stage-0'
                             ],
                             plugins: [
                                 'react-hot-loader/babel',
@@ -34,7 +34,6 @@ module.exports = {
                                 ['module-resolver', {
                                     root: ['./src'],
                                     alias: {
-                                        test: './test',
                                         underscore: 'lodash'
                                     }
                                 }]
