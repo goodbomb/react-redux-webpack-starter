@@ -33,7 +33,7 @@ root/
     ├── app/
     │   ├── App.jsx
     │   ├── index.js
-    │   ├── layout/
+    │   └── layout/
     │       ├── index.js
     │       ├── HeaderComponent.jsx
     │       ├── HeaderComponent.spec.js
