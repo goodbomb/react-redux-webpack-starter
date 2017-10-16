@@ -22,7 +22,7 @@
 See http://marmelab.com/blog/2015/12/17/react-directory-structure.html
 and http://survivejs.com/webpack_react/structuring_react_projects/
 
-This application architecture follows a more modern convention for React application architecture than what most people use in their boilerplate code and tutorials. The structure of the Viu application will be organized hierarchically by _domain_ instead of _nature_ (the conventional architectural pattern).
+This application architecture follows a more modern convention for React application architecture than what most people use in their boilerplate code and tutorials. The structure of this application should be organized hierarchically by _domain_ instead of _nature_ (the conventional architectural pattern).
 The application structure looks something like this:
 
 ```
@@ -32,6 +32,8 @@ root/
     ├── main.jsx                // entry point for the React app
     ├── app/
     │   ├── common/             // contains all shared components
+    │   ├── error/              // error handling including 404 pages
+    │   ├── home/               // HomePage-specific components and containers
     │   ├── layout/
     │   │   ├── index.js
     │   │   ├── HeaderComponent.jsx
