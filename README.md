@@ -29,16 +29,17 @@ The application structure looks something like this:
 root/
 └── src/
     ├── index.html
-    ├── main.jsx               // entry point for the React app
+    ├── main.jsx                // entry point for the React app
     ├── app/
+    │   ├── common/             // contains all shared components
+    │   ├── layout/
+    │   │   ├── index.js
+    │   │   ├── HeaderComponent.jsx
+    │   │   ├── HeaderComponent.spec.js
+    │   │   └── Layout.jsx
     │   ├── App.jsx
-    │   ├── index.js
-    │   └── layout/
-    │       ├── index.js
-    │       ├── HeaderComponent.jsx
-    │       ├── HeaderComponent.spec.js
-    │       └── Layout.jsx
-    └──  common/
+    │   └── index.js
+    └──  config/
         ├── index.js
         └── rootReducer.js
 ```
@@ -52,7 +53,7 @@ The application build is handled primarily by [Webpack][Webpack] and executed us
 
 ## ES5 vs ES6 Javascript
 
-We should make use of ES6 Javascript wherever possible (especially when defining stateful components using the _class_ syntax - ie. Containers). For example, a basic React Container (component with state) should look like this:
+Make use of ES6 Javascript wherever possible (especially when defining stateful components using the _class_ syntax - ie. Containers). For example, a basic React Container (component with state) should look like this:
 
 ```
 import React, { Component } from 'react';
@@ -88,9 +89,9 @@ export default MyComponent;
 
 ## CSS Styles
 
-We are using [Styled-Components][Styled-Components] for styling React components. It is a powerful library that allows you to write styles using standard CSS syntax while leveraging the full power of JavaScript.
+This boilerplate uses [Styled-Components][Styled-Components] for styling React components. It is a powerful library that allows you to write styles using standard CSS syntax while leveraging the full power of JavaScript.
 
-CSS styles are linted using [StyleLint][StyleLint].
+CSS styles are style checked using [StyleLint][StyleLint] whenever a file has changed.
 
 The full set of style lint rules are found in the ```.stylelintrc``` file. See [the StyleLint rule definitions][StyleLintDefs] for a full explanation fo what each rule does.
 
@@ -105,40 +106,56 @@ src/
     main.spec.js
 ```
 
-Our tests use [Jest][Jest] and [Enzyme][Enzyme].
+Tests are using [Jest][Jest] and [Enzyme][Enzyme].
+
+
+## Server
+
+This React / Redux application is served using a simple Express server defined in the `server.js` file. By default, running `npm start` will serve the React application on `http://localhost:5000`.
+
+It also uses a proxy to forward all API requests made from the `/api` path to `http://localhost:5555` by default. For example, sending a request to `http://localhost:5000/api/endpoint` will send the actual request to `<API_URL>/endpoint`. To specify a different URL for the API, create a `.env` file in the root directory and add `API_URL=https://<insert api url>`.
 
 
 ## Tech Stack
 
 **Javascript Framework(s):**
-- React
-- Redux
+- [React][React]
+- [Redux][Redux]
 
 **Build Tools(s):**
-- Webpack
+- [Webpack][Webpack]
 - NPM Scripts
 
 **Test Framework(s):**
-- Jest
-- Enzyme
+- [Jest][Jest]
+- [Enzyme][Enzyme]
 
 **CSS Styling:**
-- Styled Components
+- [Styled Components][Styled-Components]
 
 **Linting and Checkstyle:**
-- ESLint
+- [ESLint][ESLint]
 - ESLint React Plugin
 - ESLint Airbnb configuration
-- StyleLint
+- [StyleLint][StyleLint]
 
 **Other Tools:**
 - ES6
 - Babel (for converting ES6 into ES5 syntax)
 - Babel Webpack Loader
+- [Axios][https://github.com/axios/axios] (easy-to-use Promise-based HTTP client)
+
+**Recommended Tools:** (not included in this boilerplate)
+- [Material UI][http://www.material-ui.com/]
+- [Material Icons][https://material.io/icons/] (these are available inherently as part of Material UI)
+- [Redux Form][https://redux-form.com/]
 
 
 
+[React]: https://reactjs.org/
+[Redux]: http://redux.js.org/
 [Styled-Components]: https://www.styled-components.com/
+[ESLint]: https://eslint.org/
 [StyleLint]: https://github.com/stylelint/stylelint
 [StyleLintDefs]: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules.md
 [Webpack]: https://webpack.github.io/
