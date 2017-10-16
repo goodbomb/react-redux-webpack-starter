@@ -8,7 +8,7 @@ import createHistory from 'history/createBrowserHistory';
 import { ConnectedRouter } from 'react-router-redux';
 
 import App from 'app/App';
-import rootReducer from 'common/rootReducer';
+import rootReducer from 'config/rootReducer';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
