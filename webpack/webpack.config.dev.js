@@ -1,7 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var API_URL = process.env.API_URL || 'http://localhost:5555/';
+const API_URL = process.env.API_URL || 'http://localhost:5555/';
 
 module.exports = {
     entry: [
@@ -46,6 +46,17 @@ module.exports = {
                     }
                 ],
                 include: path.resolve(__dirname, '..', 'src')
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]'
+                        }
+                    }
+                ]
             }
         ]
     },

@@ -19,6 +19,9 @@ var htmlTemplate = `
         <meta name="viewport" content="width=device-width, maximum-scale = 1.0">
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" rel="stylesheet">
+
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     </head>
 
     <body>
@@ -32,7 +35,7 @@ var htmlTemplate = `
 </html>
 `;
 
-if (process.env.NODE_ENV !== 'prod') {
+if (process.env.NODE_ENV !== 'production') {
     var webpackDevMiddleware = require('webpack-dev-middleware');
     var webpackHotMiddleware = require('webpack-hot-middleware');
     var webpack = require('webpack');

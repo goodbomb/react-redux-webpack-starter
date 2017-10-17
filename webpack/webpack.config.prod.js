@@ -1,6 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: [
@@ -48,6 +49,18 @@ module.exports = {
                     }
                 ],
                 include: path.resolve(__dirname, '..', 'src')
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'assets/',
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -62,7 +75,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('prod')
         }),
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             chunksSortMode: 'auto',
@@ -81,6 +94,12 @@ module.exports = {
                 },
                 debug: false
             }
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, '..', 'src/favicon.ico'),
+                to: path.resolve(__dirname, '..', 'dist/favicon.ico')
+            }
+        ])
     ]
 };
