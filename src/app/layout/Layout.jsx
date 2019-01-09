@@ -1,21 +1,26 @@
 import React from 'react';
-import { default as Header } from './HeaderComponent';
-import {
-    Switch,
-    Route } from 'react-router-dom';
-import { HomeView, ErrorView } from 'app';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Content, Header, Footer } from './';
 
-const Layout = function() {
+const StyledLayout = styled.div`
+    min-height: 100%;
+    position: relative;
+`;
+
+const Layout = function(props) {
     return (
-        <div className="layout">
+        <StyledLayout className="layout">
             <Header />
-
-            <Switch>
-                <Route exact={true} path="/" component={HomeView} />
-                <Route component={ErrorView} />
-            </Switch>
-        </div>
+            <Content children={props.children} />
+            <Footer />
+        </StyledLayout>
     );
 };
+
+Layout.propTypes = {
+    children: PropTypes.object
+};
+
 
 export default Layout;

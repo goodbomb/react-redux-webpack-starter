@@ -4,10 +4,11 @@ const webpack = require('webpack');
 const API_URL = process.env.API_URL || 'http://localhost:5555/';
 
 module.exports = {
+    mode: 'development',
     entry: [
         'webpack-hot-middleware/client?reload=true?path=http://localhost:5000/__webpack_hmr',
         'react-hot-loader/patch',
-        'babel-polyfill',
+        '@babel/polyfill',
         './src/main.jsx'
     ],
     output: {
@@ -26,9 +27,32 @@ module.exports = {
                         options: {
                             cacheDirectory: true,
                             plugins: [
-                                'react-hot-loader/babel',
-                                'transform-class-properties',
-                                'transform-decorators-legacy',
+                                "@babel/plugin-syntax-dynamic-import",
+                                "@babel/plugin-syntax-import-meta",
+                                "@babel/plugin-proposal-class-properties",
+                                "@babel/plugin-proposal-json-strings",
+                                [
+                                    "@babel/plugin-proposal-decorators",
+                                    {
+                                        "legacy": true
+                                    }
+                                ],
+                                "@babel/plugin-proposal-function-sent",
+                                "@babel/plugin-proposal-export-namespace-from",
+                                "@babel/plugin-proposal-numeric-separator",
+                                "@babel/plugin-proposal-throw-expressions",
+                                "@babel/plugin-proposal-export-default-from",
+                                "@babel/plugin-proposal-logical-assignment-operators",
+                                "@babel/plugin-proposal-optional-chaining",
+                                [
+                                    "@babel/plugin-proposal-pipeline-operator",
+                                    {
+                                        "proposal": "minimal"
+                                    }
+                                ],
+                                "@babel/plugin-proposal-nullish-coalescing-operator",
+                                "@babel/plugin-proposal-do-expressions",
+                                "@babel/plugin-proposal-function-bind",
                                 ['module-resolver', {
                                     root: ['./src'],
                                     alias: {
