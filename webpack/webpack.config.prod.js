@@ -4,8 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+    mode: 'production',
     entry: [
-        'babel-polyfill',
+        '@babel/polyfill',
         './src/main.jsx',
     ],
     output: {

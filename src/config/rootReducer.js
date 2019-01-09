@@ -1,10 +1,10 @@
-import { routerReducer } from 'react-router-redux';
+import { connectRouter } from 'connected-react-router';
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 
-const rootReducer = combineReducers({
+const rootReducer = history => combineReducers({
     form,
-    routing: routerReducer
+    router: connectRouter(history)
 });
 
 export default rootReducer;

@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import ReduxThunk from 'redux-thunk';
 import { AppContainer } from 'react-hot-loader';
 import createHistory from 'history/createBrowserHistory';
-import { ConnectedRouter } from 'react-router-redux';
-
+import { ConnectedRouter } from 'connected-react-router';
 import App from 'app/App';
-import rootReducer from 'config/rootReducer';
+import { axiosConfig, configureStore } from 'config';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
-const store = createStoreWithMiddleware(rootReducer);
+const INITIAL_STATE = {};
 const history = createHistory();
+const store = configureStore(INITIAL_STATE, history);
+
+const MOUNT_NODE = document.getElementById('root');
+
+axiosConfig();
 
 ReactDOM.render(
     <Provider store={store}>
@@ -22,24 +23,28 @@ ReactDOM.render(
             </ConnectedRouter>
         </AppContainer>
     </Provider>
-    , document.getElementById('root')
+    , MOUNT_NODE
 );
 
-/*eslint-disable */
+/* eslint-disable */
 
 // Required for Hot Module Replacement
 if (module.hot) {
+    module.hot.status();
     module.hot.accept('./app/App', () => {
         const NextApp = require('./app/App').default;
 
         ReactDOM.render(
             <Provider store={store}>
                 <AppContainer>
-                    <NextApp history={history} />
+                    <ConnectedRouter history={history}>
+                        <NextApp />
+                    </ConnectedRouter>
                 </AppContainer>
             </Provider>
-            , document.getElementById('root')
+            , MOUNT_NODE
         );
     });
 }
-/*eslint-enable */
+
+/* eslint-enable */

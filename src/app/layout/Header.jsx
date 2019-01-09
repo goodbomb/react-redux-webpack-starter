@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { palette } from 'theme';
 
-export const Header = styled.div`
+const StyledHeader = styled.section`
     align-items: center;
     background-color: ${palette.primaryColor};
     display: flex;
@@ -10,12 +10,12 @@ export const Header = styled.div`
     justify-content: center;
 `;
 
-const HeaderComponent = function() {
+const Header = function() {
     return (
-        <Header className="header">
+        <StyledHeader className="header">
             Header content
-        </Header>
+        </StyledHeader>
     );
 };
 
-export default HeaderComponent;
+export default Header;

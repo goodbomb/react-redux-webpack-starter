@@ -66,6 +66,7 @@
         "media-query-list-comma-space-after": "always",
         "media-query-list-comma-space-before": "never",
         "no-duplicate-selectors": true,
+        "no-empty-source": null,
         "no-eol-whitespace": true,
         "no-invalid-double-slash-comments": true,
         "no-missing-end-of-source-newline": true,
