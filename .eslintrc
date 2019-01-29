@@ -26,6 +26,12 @@
         "promise",
         "react"
     ],
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "detect"
+        }
+    },
     "rules": {
         "jsx-quotes": [2, "prefer-double"],
         "react/display-name": [0, { "ignoreTranspilerName": false }],
