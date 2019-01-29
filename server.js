@@ -2,16 +2,16 @@
 
 require('dotenv').config();
 
-var express = require('express');
-var server = express();
-var proxy = require('proxy-middleware');
-var url = require('url');
-var path = require('path');
-var morgan = require('morgan');
-var API_URL = process.env.API_URL || 'http://localhost:5555/';
-var CLIENT_PORT = process.env.VIU_PORT || 5000;
+const express = require('express');
+const server = express();
+const proxy = require('proxy-middleware');
+const url = require('url');
+const path = require('path');
+const morgan = require('morgan');
+const API_URL = process.env.API_URL || 'http://localhost:5555/';
+const CLIENT_PORT = process.env.PORT || 5000;
 
-var htmlTemplate = `
+const htmlTemplate = `
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,18 +36,18 @@ var htmlTemplate = `
 `;
 
 if (process.env.NODE_ENV !== 'production') {
-    var webpackDevMiddleware = require('webpack-dev-middleware');
-    var webpackHotMiddleware = require('webpack-hot-middleware');
-    var webpack = require('webpack');
+    const webpackDevMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
+    const webpack = require('webpack');
 
-    var config = require('./webpack/webpack.config.dev');
-    var compiler = webpack(config);
-    var webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
+    const config = require('./webpack/webpack.config.dev');
+    const compiler = webpack(config);
+    const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
         noInfo: true,
         publicPath: config.output.publicPath
     });
 
-    var logger = morgan('dev');
+    const logger = morgan('dev');
 
     server.use(webpackDevMiddlewareInstance);
     server.use(logger);
@@ -65,7 +65,7 @@ if (process.env.NODE_ENV !== 'production') {
     });
 
     // Proxy settings for connecting to API
-    // process.env.API_URL is an environment variable set on the server environment
+    // process.env.API_URL is an environment constiable set on the server environment
     server.use('/api', proxy(url.parse(API_URL)));
 
     // serve the app's index.html file when accessing any path
@@ -76,7 +76,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 } else {
 
-    var logger = morgan('short');
+    const logger = morgan('short');
 
     server.use(express.static(path.resolve(__dirname, 'dist')));
     server.use(logger);
