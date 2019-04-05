@@ -145,12 +145,12 @@ It also uses a proxy to forward all API requests made from the `/api` path to `h
 - ES6
 - Babel (for converting ES6 into ES5 syntax)
 - Babel Webpack Loader
-- [Axios][https://github.com/axios/axios] (easy-to-use Promise-based HTTP client)
+- [Axios](https://github.com/axios/axios) (easy-to-use Promise-based HTTP client)
+- [Formik](https://jaredpalmer.com/formik/)
 
 **Recommended Tools:** (not included in this boilerplate)
-- [Material UI][http://www.material-ui.com/]
-- [Material Icons][https://material.io/icons/] (these are available inherently as part of Material UI)
-- [Formik][https://jaredpalmer.com/formik/]
+- [Material UI](http://www.material-ui.com/)
+- [Material Icons](https://material.io/icons/) (these are available inherently as part of Material UI)
 
 
 
