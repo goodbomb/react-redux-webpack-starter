@@ -150,7 +150,7 @@ It also uses a proxy to forward all API requests made from the `/api` path to `h
 **Recommended Tools:** (not included in this boilerplate)
 - [Material UI][http://www.material-ui.com/]
 - [Material Icons][https://material.io/icons/] (these are available inherently as part of Material UI)
-- [Redux Form][https://redux-form.com/]
+- [Formik][https://jaredpalmer.com/formik/]
 
 
 
