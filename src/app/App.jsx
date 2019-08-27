@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { Routes } from './';
 import { Layout } from 'app/layout';
@@ -24,15 +23,10 @@ const App = function(props) {
             />
 
             <Layout {...props}>
-                {Routes.baseRoutes(props.match)}
+                <Routes />
             </Layout>
         </div>
     );
-};
-
-App.propTypes = {
-    history: PropTypes.object,
-    match: PropTypes.object
 };
 
 export default App;

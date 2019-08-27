@@ -22,5 +22,4 @@ Layout.propTypes = {
     children: PropTypes.object
 };
 
-
 export default Layout;
