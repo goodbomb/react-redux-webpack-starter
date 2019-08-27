@@ -92,6 +92,9 @@ module.exports = {
             'src',
             'node_modules'
         ],
+        alias: {
+            Assets: path.resolve(__dirname, 'src/assets/')
+        },
         extensions: ['.js', '.jsx']
     },
     plugins: [
