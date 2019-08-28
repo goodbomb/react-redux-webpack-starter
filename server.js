@@ -8,6 +8,7 @@ const proxy = require('proxy-middleware');
 const url = require('url');
 const path = require('path');
 const morgan = require('morgan');
+const open = require('open');
 const API_URL = process.env.API_URL || 'http://localhost:5555/';
 const CLIENT_PORT = process.env.PORT || 5000;
 
@@ -60,6 +61,7 @@ if (process.env.NODE_ENV !== 'production') {
     // start localhost server on CLIENT_PORT
     server.listen(CLIENT_PORT, function() {
         webpackDevMiddlewareInstance.waitUntilValid(function(){
+            open('http://localhost:' + CLIENT_PORT);
             console.log(process.env.NODE_ENV + ' server listening at localhost:' + CLIENT_PORT);
         });
     });
