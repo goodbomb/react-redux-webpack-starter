@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader';
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Routes } from './';
@@ -29,4 +30,4 @@ const App = function(props) {
     );
 };
 
-export default App;
+export default hot(module)(App);

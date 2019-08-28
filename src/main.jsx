@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader';
 import { createHistory, LocationProvider } from '@reach/router';
 import App from 'app/App';
 import { axiosConfig, configureStore } from 'config';
@@ -16,34 +15,9 @@ axiosConfig();
 
 ReactDOM.render(
     <Provider store={store}>
-        <AppContainer>
-            <LocationProvider history={history}>
-                <App />
-            </LocationProvider>
-        </AppContainer>
+        <LocationProvider history={history}>
+            <App />
+        </LocationProvider>
     </Provider>
     , MOUNT_NODE
 );
-
-/* eslint-disable */
-
-// Required for Hot Module Replacement
-if (module.hot) {
-    module.hot.status();
-    module.hot.accept('./app/App', () => {
-        const NextApp = require('./app/App').default;
-
-        ReactDOM.render(
-            <Provider store={store}>
-                <AppContainer>
-                    <LocationProvider history={history}>
-                        <NextApp />
-                    </LocationProvider>
-                </AppContainer>
-            </Provider>
-            , MOUNT_NODE
-        );
-    });
-}
-
-/* eslint-enable */
