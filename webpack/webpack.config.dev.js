@@ -1,8 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const API_URL = process.env.API_URL || 'http://localhost:5555/';
-
 module.exports = {
     mode: 'development',
     entry: [
@@ -90,7 +88,8 @@ module.exports = {
             'node_modules'
         ],
         alias: {
-            Assets: path.resolve(__dirname, 'src/assets/')
+            Assets: path.resolve(__dirname, 'src/assets/'),
+            'react-dom': '@hot-loader/react-dom'
         },
         extensions: ['.js', '.jsx', '.css', '.scss']
     },
