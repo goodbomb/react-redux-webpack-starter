@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -99,11 +98,12 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('prod')
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
             template: 'src/index.html',
+            favicon: 'src/favicon.ico',
             chunksSortMode: 'auto',
             hash: true,
             inject: 'body',
@@ -120,12 +120,6 @@ module.exports = {
                 },
                 debug: false
             }
-        }),
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve(__dirname, '..', 'src/favicon.ico'),
-                to: path.resolve(__dirname, '..', 'dist/favicon.ico')
-            }
-        ])
+        })
     ]
 };

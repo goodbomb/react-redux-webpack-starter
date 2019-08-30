@@ -11,7 +11,7 @@
 | -------------         | -------------
 | npm start             | Builds the development environment and starts the dev server on `http://localhost:5000`.
 | npm run build         | Builds the production ready code. All files are generated in the `/dist` directory.
-| npm run build:run     | Builds the production ready code and starts the server.js file on `http://localhost:5000` by default.
+| npm run start:prod    | Builds the production ready code and starts the server.js file on `http://localhost:5000` by default.
 | npm test              | Executes all tests in the `./src` directory.
 | npm run test:watch    | Executes all tests in the `./src` directory and watches for changes to tests.
 | npm run test:coverage | Executes all tests in the `./src` directory and generates coverage reports.
