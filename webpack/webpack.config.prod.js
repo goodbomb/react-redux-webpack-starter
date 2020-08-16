@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -8,6 +9,14 @@ module.exports = {
         '@babel/polyfill',
         './src/main.jsx',
     ],
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                parallel: true,
+            }),
+        ]
+    },
     output: {
         path: path.resolve(__dirname, '..', 'dist'),
         publicPath: '/',
