@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -108,6 +109,9 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
+        }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(dotenv.parsed)
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({

@@ -43,14 +43,13 @@ if (process.env.NODE_ENV !== 'production') {
 
     const config = require('./webpack/webpack.config.dev');
     const compiler = webpack(config);
-    const webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
-        noInfo: true,
+    const middleware = webpackDevMiddleware(compiler, {
         publicPath: config.output.publicPath
     });
 
     const logger = morgan('dev');
 
-    server.use(webpackDevMiddlewareInstance);
+    server.use(middleware);
     server.use(logger);
 
     // Apply hot module reloading middleware
@@ -60,7 +59,7 @@ if (process.env.NODE_ENV !== 'production') {
 
     // start localhost server on CLIENT_PORT
     server.listen(CLIENT_PORT, function() {
-        webpackDevMiddlewareInstance.waitUntilValid(function(){
+        middleware.waitUntilValid(function(){
             open('http://localhost:' + CLIENT_PORT);
             console.log(process.env.NODE_ENV + ' server listening at localhost:' + CLIENT_PORT);
         });
