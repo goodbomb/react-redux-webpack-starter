@@ -5,7 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const server = express();
 const proxy = require('proxy-middleware');
-const url = require('url');
+const { URL } = require('url');
 const path = require('path');
 const morgan = require('morgan');
 const open = require('open');
@@ -66,8 +66,8 @@ if (process.env.NODE_ENV !== 'production') {
     });
 
     // Proxy settings for connecting to API
-    // process.env.API_URL is an environment constiable set on the server environment
-    server.use('/api', proxy(url.parse(API_URL)));
+    // process.env.API_URL is an environment variable set on the server environment
+    server.use('/api', proxy(new URL(API_URL)));
 
     // serve the app's index.html file when accessing any path
     server.get('*', function(req, res) {
@@ -86,7 +86,7 @@ if (process.env.NODE_ENV !== 'production') {
         console.log('PRODUCTION server listening at localhost:' + CLIENT_PORT);
     });
 
-    server.use('/api', proxy(url.parse(API_URL)));
+    server.use('/api', proxy(new URL(API_URL)));
 
     server.get('*', function(req, res) {
         res.sendFile(path.resolve(__dirname, 'dist/index.html'));
